@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
+
 class User extends Authenticatable
 {
     /**
@@ -23,4 +24,20 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    //Выполняем связь. Где живет пользователь
+    public function country(){
+        return $this->hasOne("App\Country");
+    }
+
+    public function articles()
+    {
+        return $this->hasMany("App\Article");
+    }
+
+    public function roles()
+    {
+       return $this->belongsToMany('App\Role');
+    }
+
 }

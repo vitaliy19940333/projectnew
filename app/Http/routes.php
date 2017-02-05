@@ -11,28 +11,50 @@
 |
 */
 
-//Главная
-Route::get("/",['as' => 'her',function(){
-    return view("welcome");
-}]);
 
+#Страница Домашняя
+Route::get("/",[
+    'uses' => 'admin\AboutController@home'
+]);
+
+
+
+#Страница Домашняя
 Route::get("/home",[
-                    "uses" => "admin\AboutController@home",
-                    "as" => "home"
+    'uses' => 'admin\AboutController@home',
+    'as'=> 'home'
 ]);
 
+
+
+#Страница О нас
 Route::get("/about",[
-    "uses" => "admin\AboutController@about",
-    "as" => "about"
+    'uses' => 'admin\AboutController@about',
+    'as'=> 'about'
 ]);
 
 
-Route::get("/Articles",[
-    "uses" => "admin\AboutController@articles",
-    "as" => "articles"
+#Страница Статьи
+Route::get("/articles",[
+    'uses' => 'admin\AboutController@articles',
+    'as'=> 'articles'
 ]);
 
-Route::get("/Article",[
-    "uses" => "admin\AboutController@article",
-    "as" => "article"
+
+#Страница Статья
+Route::get("/article/{id}",[
+    'uses' => 'admin\AboutController@article',
+    'as'=> 'article'
+]);
+
+#Добавлении статьи
+Route::match(['post','get','put'],'/articl/add',[
+    'uses' => "admin\AboutController@addArticle",
+    'as' => 'addarticledsffsd'
+]);
+
+
+Route::match(['get','post'],'/contact',[
+    'uses' => "ContactController@Index",
+    'as' => "contact"
 ]);
